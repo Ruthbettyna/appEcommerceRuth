@@ -2,10 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
-function ItemCount() {
-    const [counter, setCounter] = useState (1);
+function ItemCount({stock='8'}) {
+    const [counter, setCounter] = useState (0);
     function agregar(){
-        setCounter(counter + 1);
+        setCounter(counter + 1)
+        if (counter >= stock){
+            return alert('no queda')
+        } else return true
     }
     function quitar(){
         setCounter(counter - 1);
