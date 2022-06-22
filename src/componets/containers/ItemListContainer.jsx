@@ -1,6 +1,7 @@
 import {React, useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList'
 import { GetFetch } from '../GetFectch/GetFetch'
+import { useParams } from 'react-router-dom'
 
 function ItemListContainer(props) {
     const style = {fontSize:'60px', backgroundColor:'pink', textAlign:'center', display:'flex', flexDirection:'row',flexWrap:'wrap'}
@@ -8,14 +9,27 @@ function ItemListContainer(props) {
     const [productos, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const { categoriaId } = useParams()
+    console.log (categoriaId)
+
     useEffect(()=>{
-        GetFetch()
+        if (categoriaId) {
+            GetFetch()
             .then((resp)=>{
-                setProduct(resp);
+                setProduct(resp.filter(products => products.categoria === categoriaId))
+                setLoading(false)
             })
             .catch((err) => console(err))
-            .finally(()=> setLoading(false));
-    }, []);
+        } else {
+            GetFetch()
+            .then((resp)=>{
+                setProduct(resp);
+                setLoading(false)
+            })
+            .catch((err) => console(err))
+        }
+
+    }, [categoriaId]);
     return (
     <>
     <h2 style= {style}>{greeting}</h2>

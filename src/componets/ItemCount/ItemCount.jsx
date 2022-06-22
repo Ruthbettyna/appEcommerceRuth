@@ -1,32 +1,51 @@
 import React from 'react'
 import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 
-const ItemCount = ({initial, stock, onAdd}) => {
+function ItemCount ({initial, stock, onAdd}) {
     const [count, setCount] = useState (initial)
-    function sumar(){
+    const [show,setShow] = useState(true)
+
+    const sumar =() => {
         if (count < stock) {
             setCount(count + 1)
-        }
-    function resta(){
+        };
+    const resta = () => {
         if (count > 1){
             setCount(count - 1)
             }
-        }
-        const agregar = () => {
+        };
+    const agregar = () => {
             onAdd(count)
-        }
-    return (
-        <>
-    <div>
-        <Button variant="info" onClick={resta}>Quitar</Button>{count}<Button variant="info" onClick={sumar}>Agregar</Button>
-        <Button variant="warning" onClick={agregar}>AGREGAR A LA CESTA</Button>
-    </div>
-        </>
+            setShow(false)
+        };
 
-    
-    )
+        if(show && stock > 0){
+            return (
+                <div>
+                    <div className="ItemCount">
+                        <button type='button' onClick={resta}> - </button>
+                        <p className='cout'>Cantidad{count}</p>
+                        <button type='button' onClick={sumar}> + </button>
+                    </div>
+                        <button onClick={agregar}> Añadir al carrito </button>
+                </div>
+            )
+        }
+
+        if(stock === 0){
+            return(
+                <p>No quedan! Elige otro modelo!</p>
+            )
+        }
+        if (! show && stock>0){
+            return (
+                <Link to="/car">
+                    <button>Vamos al carrito!</button>
+                </Link>
+            )
+        }
 }
 }
 
