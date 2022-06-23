@@ -19,7 +19,7 @@ function ItemDetail ({producto}) {
             </div>
             <div className="row">
                 <div className="col">
-                    <ItemCount initial={1} stock={10} onAdd={onAdd} />
+                    <ItemCount initial={1} stock={5} onAdd={onAdd} />
                 </div>
             </div>
         </div>

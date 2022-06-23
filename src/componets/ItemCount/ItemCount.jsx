@@ -4,49 +4,40 @@ import { Link } from 'react-router-dom'
 
 
 function ItemCount ({initial, stock, onAdd}) {
-    const [count, setCount] = useState (initial)
-    const [show,setShow] = useState(true)
+    const [count, setCount] = useState(initial)
 
-    const sumar =() => {
+    function suma() {
         if (count < stock) {
             setCount(count + 1)
-        };
-    const resta = () => {
-        if (count > 1){
+        }
+    }
+    function resta() {
+        if (count > 1) {
             setCount(count - 1)
-            }
-        };
+        }
+    }
+
     const agregar = () => {
-            onAdd(count)
-            setShow(false)
-        };
+        onAdd(count)
+    }
 
-        if(show && stock > 0){
-            return (
-                <div>
-                    <div className="ItemCount">
-                        <button type='button' onClick={resta}> - </button>
-                        <p className='cout'>Cantidad{count}</p>
-                        <button type='button' onClick={sumar}> + </button>
+    return (
+        <>
+            {/* <center> */}
+                <div className="container m-5 w-25 border rounded border-3" style={{ textAlign: 'center', background: 'pink'  }}>                   
+                    <span className="alert alert-success w-100" >
+                        { count }
+                    </span>                   
+                    <br />
+                    <div className="mt-4">
+                        <button onClick={suma} className='btn btn-dark w-50' > + </button> 
+                        <button onClick={resta} className='btn btn-dark w-50' > - </button><br/>
                     </div>
-                        <button onClick={agregar}> Añadir al carrito </button>
+                    <button onClick={agregar} className='btn btn-dark w-100'>agregar</button>
                 </div>
-            )
-        }
-
-        if(stock === 0){
-            return(
-                <p>No quedan! Elige otro modelo!</p>
-            )
-        }
-        if (! show && stock>0){
-            return (
-                <Link to="/car">
-                    <button>Vamos al carrito!</button>
-                </Link>
-            )
-        }
-}
+            {/* </center> */}
+        </>
+    )
 }
 
 export default ItemCount

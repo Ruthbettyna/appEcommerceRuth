@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import './App.css'
-import Body from './componets/Body'
+//import Body from './componets/Body'
 import NavBar from './componets/NavBar/NavBar'
 import ItemListContainer from './componets/containers/ItemListContainer'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,8 +23,9 @@ function App() {
 
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
-        <Body />
+        
     </BrowserRouter>
+    //<Body />
   )
 }
 
