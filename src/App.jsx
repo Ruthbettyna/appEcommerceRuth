@@ -6,13 +6,16 @@ import NavBar from './componets/NavBar/NavBar'
 import ItemListContainer from './componets/containers/ItemListContainer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ItemDetailContainer } from './componets/containers/ItemDetailContainer';
-import { Cart } from './componets/Cart/Cart';
+import Cart from './componets/Cart/Cart';
+import { CartContextProvider } from './context/CartContext';
 
 
 
 function App() {
 
   return (
+    <CartContextProvider>
+
     <BrowserRouter>
       <NavBar />
         <Routes>
@@ -25,6 +28,9 @@ function App() {
         </Routes>
         
     </BrowserRouter>
+
+    </CartContextProvider>
+
     //<Body />
   )
 }

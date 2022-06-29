@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 
 function ItemListContainer(props) {
     const style = {fontSize:'60px', backgroundColor:'pink', textAlign:'center', display:'flex', flexDirection:'row',flexWrap:'wrap'}
+    const styles = {display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}
     const {greeting} = props
     const [productos, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ function ItemListContainer(props) {
     return (
     <>
     <h2 style= {style}>{greeting}</h2>
-    <div>
+    <div style={styles}>
     {loading ? <p>Cargando...</p> : <ItemList productos={productos}/>}
     </div>
     </>

@@ -7,6 +7,7 @@ import Input from "../Imput/Input"
 
 export const ItemDetailContainer = () => {
     const [producto, setProducto] = useState ({})
+    const [loanding, setLoanding] = useState(true)
 
     const { id } = useParams()
     console.log(id)
@@ -15,11 +16,18 @@ export const ItemDetailContainer = () => {
         GetFetch(id)
         .then((resp) => setProducto(resp))
         .catch(err => console.log(err) )
+        .finally(()=> setLoanding(false))
     }, [])
 
     return (
     <>
+    <div>
+    {loanding ? <h2>Cargando...</h2>
+    :
     <ItemDetail producto={producto} />
+    }
+    </div>
+
     <Input />
     </>
     )

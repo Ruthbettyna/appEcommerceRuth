@@ -1,25 +1,34 @@
-import React from 'react'
-import { Card, Button } from "react-bootstrap";
+import React, { memo } from 'react'
+//import { Card, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
-function Item({ producto }) {
+const Item = memo(
+    ({ producto }) => {
     return (
-    <div>
-        <Card  style={{ width: '8rem', float:'left'}}>
-            <Card.Img variant="top" src={producto.img}/>
-                <Card.Body>
-                    <Card.Title>{producto.title}</Card.Title>
-                        <Card.Text>
-                            {producto.colors}:{producto.price}€
-                        </Card.Text>
-                        <Link to={`/detalle/${producto.id}`}>
-                        <Button variant="primary">Detalle</Button>
-                        </Link>
-                        
-                    </Card.Body>
-                </Card>
-    </div>
+        <div            
+        className='col-md-4 p-1'>                    
+        <div className="card w-100 mt-5" >
+            <div className="card-header">
+            {producto.title}
+            </div>
+            <div className="card-body">
+                <img src={producto.img} alt='' className='w-50' />
+                {producto.price}€                                                           
+            </div>
+            <div className="card-footer"> 
+                <Link to={`/detalle/${producto.id}`} >
+                    <button className="btn btn-outline-primary btn-block">
+                        Detalle
+                    </button>   
+                </Link> 
+            </div>
+        </div>                                                                                                                            
+        </div>
     )
 }
+)
+
+
+
 
 export default Item
